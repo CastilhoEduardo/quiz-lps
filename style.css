@@ -111,6 +111,7 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+    margin-bottom: 10px;
 }
 
 button:hover {

@@ -1,6 +1,6 @@
 let quiz = null;
 
-// 🔹 Carregar quiz
+// Carregar quiz
 function carregarQuiz(nome) {
     const antigo = document.getElementById("quiz-script");
     if (antigo) antigo.remove();
@@ -15,7 +15,7 @@ function carregarQuiz(nome) {
     document.getElementById("resultado").style.display = "none";
 }
 
-// 🔹 Iniciar quiz
+// Iniciar quiz
 function iniciarQuiz() {
     if (!window.quiz) {
         alert("Erro ao carregar o quiz")
@@ -29,7 +29,7 @@ function iniciarQuiz() {
     mostrarTodasPerguntas();
 }
 
-// 🔹 Mostrar todas as perguntas
+// Mostrar todas as perguntas
 function mostrarTodasPerguntas() {
     const container = document.getElementById("quiz-container");
     container.innerHTML = "";
@@ -76,9 +76,9 @@ function toggleRadio(radio) {
     }
 }
 
-// 🔹 Finalizar Quiz
+//  Finalizar Quiz
 function finalizarQuiz() {
-    // 🔹 Verifica não respondidas
+    // Verifica não respondidas
     const naoRespondidas = [];
 
     quiz.perguntas.forEach((p, index) => {
@@ -93,7 +93,7 @@ function finalizarQuiz() {
         return;
     }
 
-    // 🔹 Calcula pontuação
+    // Calcula pontuação
     let pontuacao = 0;
 
     quiz.perguntas.forEach((p, index) => {
@@ -108,17 +108,17 @@ function finalizarQuiz() {
         }
     });
 
-    // 🔹 Mostrar resultado (FORA do loop)
+    // Mostrar resultado 
     const resultado = document.getElementById("resultado");
     resultado.innerText = `Resultado: ${pontuacao} / ${quiz.perguntas.length}`;
     resultado.style.display = "block";
 
-    // 🔹 Bloquear inputs (FORA do loop)
+    // Bloquear inputs 
     document.querySelectorAll("input[type='radio']").forEach(input => {
         input.disabled = true;
     });
 
-    // 🔹 Mensagem final
+    // Mensagem final
     const total = quiz.perguntas.length;
     const percentual = (pontuacao / total) * 100;
 
@@ -133,7 +133,7 @@ function finalizarQuiz() {
     document.getElementById("texto-resultado").innerText =
         `Você acertou ${pontuacao} de ${total} questões`;
 
-    // 🔹 Mostrar modal
+    // Mostrar modal
     document.getElementById("modal-resultado").classList.add("ativo");
 }
 
@@ -141,7 +141,26 @@ function fecharResultado() {
   document.getElementById("modal-resultado").classList.remove("ativo");
 }
 
-// 🔹 Carregar padrão
+function refazerQuiz() {
+    // Limpar seleções salvas
+    for (let key in selecionadas) {
+        selecionadas[key] = null;
+    }
+
+    // Resetar progresso
+    document.getElementById("progresso").style.width = "0%"
+
+    // Esconder resultado
+    document.getElementById("resultado").style.display = "none";
+
+    // Fechar modal (se estiver aberto)
+    document.getElementById("modal-resultado").classList.remove("ativo");
+
+    // Recarregar quiz
+    mostrarTodasPerguntas();
+}
+
+// Carregar padrão
 window.onload = () => {
     carregarQuiz("matematica");
 };
