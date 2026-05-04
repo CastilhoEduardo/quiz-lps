@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Educacional</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📘 Quiz Educacional</h1>
+
+        <select onchange="carregarQuiz(this.value)">
+          <option value="matematica">Matemática</option>
+          <option value="portugues">Português</option>
+          <option value="historia">História</option>
+        </select>
+
+        <div class="barra">
+          <div id="progresso"></div>
+        </div>
+
+        <h2 id="titulo"></h2>
+
+        <div id="quiz-container"></div>
+
+        <button onclick="finalizarQuiz()">Finalizar Quiz</button>
+
+        <h2 id="resultado"></h2>
+        
+  </div>
+
+  <div id="modal-resultado" class="modal">
+    <div class="modal-conteudo">
+      <h2 id="titulo-resultado"></h2>
+      <p id="texto-resultado"></p>
+      <button onclick="fecharResultado()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
